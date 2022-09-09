@@ -1,3 +1,2 @@
 #!/bin/bash
-opew =id -u -nn
-echo "hello $opew" 
+echo "hello $USER"
