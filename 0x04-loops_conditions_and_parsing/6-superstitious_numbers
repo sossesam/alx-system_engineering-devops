@@ -5,7 +5,7 @@ my_var=1
 
 while [ $my_var -le 20 ]
 do
-	
+	echo "$my_var"
 	if [[ $my_var = 4 ]]
 	then
 		echo "bad luck from China"
@@ -15,8 +15,7 @@ do
 	elif [[ $my_var = 17 ]]
 	then
 		echo "bad luck from Italy"
-	else
-		echo "$my_var"
 	fi
+	
 	my_var=$((my_var + 1))
 done
