@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times
+
+my_var=1
+
+while [ $my_var -le 20 ]
+do
+	
+	if [[ $my_var = 4 ]]
+	then
+		echo "bad luck from china"
+	elif [[ $my_var = 9 ]]
+	then 
+		echo "bad luck from japan"
+	elif [[ $my_var = 17 ]]
+	then
+		echo "bad luck from italy"
+	else
+		echo "$my_var"
+	fi
+	my_var=$((my_var + 1))
+done
