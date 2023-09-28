@@ -7,9 +7,12 @@ while [ $my_var -le 20 ]
 do
 	echo "$my_var"
 	case $my_var in
-		4) echo "bad luck in China";;
-		9) echo "bad luck in Japan";;
-		17) echo "bad luck in Italy";;
+		4) echo "bad luck in China"
+		;;
+		9) echo "bad luck in Japan"
+		;;
+		17) echo "bad luck in Italy"
+		;;
 	esac
 	my_var=$((my_var + 1))
 done
