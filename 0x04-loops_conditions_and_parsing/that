@@ -1,0 +1,7 @@
+Script started on 2023-09-30 01:19:20-07:00 [TERM="xterm" TTY="/dev/pts/10" COLUMNS="175" LINES="44"]
+# ok
+sh: 1: ok: not found
+# clear
+[H[2J[3J# exit
+
+Script done on 2023-09-30 01:19:42-07:00 [COMMAND_EXIT_CODE="0"]
