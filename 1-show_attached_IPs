@@ -1,0 +1,8 @@
+#! /bin/bash
+
+# Extracting lines that match the following pattern 
+ip=$(ifconfig -a| awk '/inet/ {print $2}' | grep -v ^::1 | grep -v ^127)
+
+#displaying IP addresses
+echo "$ip"
+
