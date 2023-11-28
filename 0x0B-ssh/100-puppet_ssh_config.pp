@@ -9,7 +9,6 @@ file{'etc/ssh/ssh_config':
         Host *
         PasswordAuthentication no
         IdentityFile ~/.ssh/school
-
     ",
 
 }
