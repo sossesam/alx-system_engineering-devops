@@ -2,7 +2,7 @@
 #using puppet to set up server.
 
 file{'etc/ssh/ssh_config':
-    ensure => present,
+    ensure  => present,
     content => "
         Include /etc/ssh/ssh_config.d/*.conf
 
