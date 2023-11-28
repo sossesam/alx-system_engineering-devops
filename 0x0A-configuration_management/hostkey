@@ -1,0 +1,5 @@
+Host ubuntu@35.174.208.131
+Hostname 35.174.208.131
+User ubuntu
+PubKeyAuthentication yes
+IdentityFile ~/.ssh/id_rsa.pub
