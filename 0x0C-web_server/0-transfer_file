@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# this is meant to be a comment
+
 num_of_args=$#
 
 if [ $num_of_args -lt 4 ];then
