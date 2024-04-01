@@ -1,6 +1,9 @@
 #!/usr/bin/python3
+
+
 """
-A Script that, uses this REST API, for a given employee ID, returns
+A Script that, uses this REST API,
+for a given employee ID, returns
 information about his/her TODO list progress
 """
 
@@ -27,14 +30,12 @@ TOTAL_NUMBER_OF_TASKS = len(todo_json)
 completed = []
 
 for item in todo_json:
-    if item["completed"] == True:
+    if item["completed"]:
         completed.append(item)
 
 NUMBER_OF_DONE_TASKS = len(completed)
 
-print(f"Employee {EMPLOYEE_NAME} is done with tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
+print(f"Employee {EMPLOYEE_NAME} is done with tasks"
+      "({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
 for item in completed:
     print("\t" + item["title"])
-
-
-
