@@ -17,8 +17,8 @@ frontend  my_frontend
         default_backend my_backend
 backend my_backend
         balance roundrobin
-        server 176572-web-01 54.167.170.177 check port 80
-        server 176572-web-02 100.26.121.109 check port 80
+        server 140200-web-01 100.26.158.52 check port 80
+        server 140200-web-02 52.91.133.187 check port 80
 "
 echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
