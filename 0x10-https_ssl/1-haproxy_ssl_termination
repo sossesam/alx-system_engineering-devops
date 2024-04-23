@@ -7,6 +7,7 @@ global
         user haproxy
         group haproxy
         daemon
+        maxconn 2048
 
         # Default SSL material locations
         ca-base /etc/ssl/certs
@@ -16,6 +17,8 @@ global
         ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-S>
         ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
         ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
+
+        tune.ssl.default-dh-param 2048
 
 defaults
         log     global
@@ -33,19 +36,21 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend clickviral-frontend
-        bind *:80
-        mode http
-        http-request redirect scheme https code 301 unless { ssl_fc }
-        http-request set-header X_Forwarded-Proto http
-        default_backend my-backend
+        # New commands
+        option forwardfor
+        option http-server-close
 
-frontend clickviral-frontend-https
-        bind *:443 ssl crt /etc/haproxy/certs/www.hub99.tech.pem
-        http-request set-header X-Forwarded-Proto https
-        default_backend my_backend
+frontend www-frontend
+    bind *:80
+    bind *:443 ssl crt /etc/haproxy/certs/www.hub99.tech.pem
+    http-request redirect scheme https unless { ssl_fc }
+    http-request set-header X-Forwarded-Proto https
+    default_backend www-backend
 
-backend my_backend
+backend www-backend
         balance roundrobin
-        server 140200-web-01 100.26.121.109:80 check
-        server 140200-web-02 54.167.170.177:80 check
+        server 140200-web-01 100.26.158.52:80 check
+        server 140200-web-02 52.91.133.187:80 check
+
+backend letsencrypt-backend
+   server letsencrypt 127.0.0.1:54321
