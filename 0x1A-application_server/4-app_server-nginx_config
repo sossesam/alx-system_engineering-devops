@@ -1,0 +1,39 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	server_name _;
+	index index.html index.htm;
+	error_page 404 /404.html;
+	add_header X-Served-By $hostname;
+
+	location / {
+		root /var/www/html/;
+		try_files $uri $uri/ =404;
+	}
+        
+       location /airbnb-onepage {
+       proxy_pass http://0.0.0.0:5000/airbnb-onepage;
+        }
+
+	location /hbnb_static/ {
+		alias /data/web_static/current/;
+		try_files $uri $uri/ =404;
+	}
+
+	if ($request_filename ~ redirect_me) {
+		rewrite ^ https://github.com/sossesam permanent;
+	}
+
+	location ~ ^/airbnb-dynamic/number_odd_or_even/([0-9]+)$ {
+                        proxy_pass http://0.0.0.0:5001/number_odd_or_even/$1;
+	}
+	
+	location /api/ {
+                        proxy_pass http://0.0.0.0:5002//api/v1/states;
+        }
+
+	location = /404.html { root /var/www/error/;
+		internal;
+	}
+}
